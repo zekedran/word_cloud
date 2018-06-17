@@ -788,17 +788,17 @@ class WordCloud(object):
                 if orientation == Image.ROTATE_90:
                     x += size_y
                     y += size_x
-                    open_tag = ('\t<g transform="translate({x:d}, {y:d})">'
-                                '\n\t\t<text transform="rotate(-90)"').format(x=x, y=y)
+                    open_tag = ('\t<g transform="translate({x:d}, {y:.2f})">'
+                                '\n\t\t<text transform="rotate(-90)"').format(x=x, y=y-(font_size/2))
                     close_tag = '</text>\n\t</g>'
                     x, y = 0, 0
                 else:
                     y += size_y
                     open_tag = '\t<text'
                     close_tag = '</text>'
-                print('{open_tag} x="{x:d}" y="{y:d}" '
+                print('{open_tag} x="{x:d}" y="{y:.2f}" '
                            'font-size="{font_size:d}" style="fill: {color}">'
-                           '{word}{close_tag}'.format(word=word, x=x, y=y,
+                           '{word}{close_tag}'.format(word=word, x=x, y=y-(font_size/2),
                                                       font_size=font_size, color=color,
                                                       open_tag=open_tag, close_tag=close_tag), file=f)
             print('</svg>', file=f)
